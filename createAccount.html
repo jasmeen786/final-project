@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create an Account Page</title>
+    <link rel="stylesheet" href="ceate acc.css" />
+  </head>
+  <body>
+    <header>
+      <h1>CREATE AN ACCOUNT</h1>
+    </header>
+    <main>
+      <label>NAME</label>
+      <input type="text" id="name" />
+      <br />
+      <label>ADDRESS</label>
+      <input type="text" id="address" />
+      <br />
+      <label>EMAIL</label>
+      <input type="text" id="email" />
+      <br />
+      <label>CONTACT</label>
+      <input type="text" id="contact" />
+      <br />
+      <label>USERNAME</label>
+      <input type="text" id="username" />
+      <br />
+      <label>PASSWORD</label>
+      <input type="text" id="password" />
+      <h5>Password must have a minimum of 5 characters and 1 number</h5>
+      <section>
+        <div>
+          <label>Co-worker</label>
+          <input type="radio" id="worker" name="userType" />
+          <br />
+          <label>Owner</label>
+          <input type="radio" id="owner" name="userType" />
+        </div>
+        <h3 id="verification"></h3>
+        <br />
+        <button onclick="registerUser()">Register</button>
+        <!-- <input type="submit" onclick="checkUser()" /> -->
+
+        <a href="index.html"><h4>Return to Login Page</h4></a>
+      </section>
+    </main>
+    <!-- <script src="loginPage.js"></script> -->
+    <script>
+      const registerAPI = async (user) => {
+        try {
+          const response = await fetch(
+            `http://localhost:5000/api/v1/register`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(user),
+            }
+          );
+          const data = await response.json();
+
+          return data;
+        } catch (error) {
+          console.error("Error during registration:", error);
+          return {
+            success: false,
+            message: "An error occurred during registration",
+          };
+        }
+      };
+      const registerUser = async () => {
+        const name = document.getElementById("name").value;
+        const userName = document.getElementById("username").value;
+        const emailAddress = document.getElementById("email").value;
+        const phoneNumber = document.getElementById("contact").value;
+        const address = document.getElementById("address").value;
+        const password = document.getElementById("password").value;
+        const verfi = document.getElementById("verification");
+        const userType = document.getElementById("worker").checked
+          ? "coworker"
+          : "owner";
+
+        const newUser = {
+          name,
+          emailAddress,
+          phoneNumber,
+          userName,
+          address,
+          password,
+        };
+        const registrationResult = await registerAPI(newUser);
+
+        if (registrationResult.success) {
+          verfi.innerHTML = "New account created successfully";
+          verfi.style.color = "green";
+        } else {
+          verfi.innerHTML = registrationResult.error;
+          verfi.style.color = "red";
+        }
+      };
+    </script>
+  </body>
+</html>

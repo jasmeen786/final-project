@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link rel="stylesheet" href="profile.css" />
+  </head>
+  <body>
+    <header>
+      <a href="homepage.html"><h6 align="left" id=".logo-button">Logo</h6></a>
+      <h2 style="flex-grow: 1">PROFILE</h2>
+      <div class="header-right">
+        <h6 style="margin-right: 10px">Notifications</h6>
+        <button id="newPropertyButton">New Property</button>
+        <div class="dropdown filter-dropdown">
+          <button class="dropbtn">Dropdown &#9660;</button>
+          <div class="dropdown-content filter-options">
+            <a href="homepage.html" id="Home">Home</a>
+            <a href="bridge.html" id="Profile">Profile</a>
+            <a href="property search.html" id="Search">Search Properties </a>
+            <a href="index.html" id="Logout">Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div id="profilePictureContainer">
+        <img id="profilePicture" src="#" alt="Profile Picture" />
+      </div>
+
+      <div id="info">
+        <h3 id="currentName"></h3>
+        <h3 id="currentAddress"></h3>
+        <h3 id="currentEmail"></h3>
+        <h3 id="currentContact"></h3>
+      </div>
+
+      <button id="showUpdateButton">Update Information?</button>
+      <form id="updateForm"></form>
+
+      <h2>Listed Properties</h2>
+      <div id="newPropertySection" style="display: none">
+        <label for="placeName">Name:</label>
+        <input type="text" id="placeName" /><br /><br />
+
+        <label for="placeAddress">Address:</label>
+        <input type="text" id="placeAddress" /><br /><br />
+
+        <label for="description">Description:</label>
+        <input type="text" id="description" /><br /><br />
+
+        <label for="picture">Picture:</label>
+        <input type="file" id="picture" accept="image/*" /><br /><br />
+
+        <button id="addPropertyButton">Add Property</button>
+      </div>
+
+      <div id="propertyContainer"></div>
+    </main>
+
+    <script src="profileOwner.js"></script>
+  </body>
+</html>
